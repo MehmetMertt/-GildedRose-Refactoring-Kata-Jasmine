@@ -29,7 +29,7 @@ describe("Gilded Rose", function () {
     });
   });
 
-  it("quality should be smaller than 50 for every item in store", function () {
+  it("quality should be smaller than 50 for every item in store after 30 days", function () {
     const items = [
       new Item("+5 Dexterity Vest", 10, 20),
       new Item("Aged Brie", 2, 0),
@@ -62,7 +62,7 @@ describe("Gilded Rose", function () {
     });
   });
 
-  it("Quality of Aged Brie should equal to 10 after 10 days", function () {
+  it("Quality of Aged Brie should equal to 18 after 10 days", function () {
     const items = [new Item("Aged Brie", 2, 0)];
 
     const gildedRose = new Shop(items);
@@ -164,5 +164,33 @@ describe("Gilded Rose", function () {
 
     expect(items[2].quality).toEqual(50); // Quality increases by 3 for 4 days but maxes out at 50
     expect(items[2].sellIn).toEqual(1); // SellIn decreases by 4
+  });
+
+  it("Quality of Elixir of the Mongoose should should decrease by 3 and sellin also by 3 after 3 days ", function () {
+    const items = [new Item("Elixir of the Mongoose", 5, 7)];
+
+    const gildedRose = new Shop(items);
+
+    days = 3;
+    for (let i = 0; i < days; i++) {
+      gildedRose.updateQuality();
+    }
+
+    expect(items[0].quality).toEqual(4);
+    expect(items[0].sellIn).toEqual(2);
+  });
+
+  it("Quality of Elixir of the Mongoose should be 0 and sellin < 0 after 10 days", function () {
+    const items = [new Item("Elixir of the Mongoose", 5, 7)];
+
+    const gildedRose = new Shop(items);
+
+    days = 10;
+    for (let i = 0; i < days; i++) {
+      gildedRose.updateQuality();
+    }
+
+    expect(items[0].quality).toEqual(0);
+    expect(items[0].sellIn).toBeLessThanOrEqual(0);
   });
 });

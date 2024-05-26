@@ -5,4 +5,5 @@ Sulfuras never decreases in QUality or in SellIn -> DONE
 Backstage passes: increases by 2 when 10 days or less and by 3 when 5 days or less and drops to 0 after the concert -> DONE
 Quality of Backstage Pass with 10 SellIn and 49 Quality should equal to 1 SellIn and Quality 50 in 9 days -> DONE
 Quality of Backstage Passes should be 0 after the converts -> DONE
-Quality of Backstage Passes after 3 days -> Doing
+Quality of Backstage Passes after 3 days -> done
+General Check of Quality and SellIn decrease after some days -> done
