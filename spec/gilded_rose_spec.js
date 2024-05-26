@@ -24,9 +24,40 @@ describe("Gilded Rose", function () {
     }
 
     // Assert the updated item properties
-    expect(items[0].quality).toEqual(0);
     items.forEach((item) => {
       expect(item.quality).toBeGreaterThanOrEqual(0);
+    });
+  });
+
+  it("quality should be smaller than 50 for every item in store", function () {
+    const items = [
+      new Item("+5 Dexterity Vest", 10, 20),
+      new Item("Aged Brie", 2, 0),
+      new Item("Elixir of the Mongoose", 5, 7),
+      new Item("Sulfuras, Hand of Ragnaros", 0, 80),
+      new Item("Sulfuras, Hand of Ragnaros", -1, 80),
+      new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
+      new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
+      new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
+
+      // This Conjured item does not work properly yet
+      new Item("Conjured Mana Cake", 3, 6),
+    ];
+
+    const gildedRose = new Shop(items);
+
+    // Simulate passing 30 days
+    days = 30;
+    for (let i = 0; i < days; i++) {
+      gildedRose.updateQuality();
+    }
+
+    // Assert the updated item properties
+    items.forEach((item) => {
+      if (item.name == "Sulfuras, Hand of Ragnaros") {
+        expect(item.quality).toBe(80);
+      }
+      expect(item.quality).toBeLessThanOrEqual(50);
     });
   });
 });

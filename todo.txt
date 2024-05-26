@@ -1,1 +1,2 @@
-Quality nie über 50 -> TODO
+QUALTIY nie unter 0 -> DONE
+Quality nie über 50 -> DOING
