@@ -139,4 +139,30 @@ describe("Gilded Rose", function () {
     expect(items[0].quality).toEqual(50);
     expect(items[0].sellIn).toEqual(1);
   });
+
+  it("Quality check of passes after 4 days", function () {
+    const items = [
+      new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
+      new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
+      new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
+    ];
+
+    const gildedRose = new Shop(items);
+
+    // Simulate passing 4 days
+    days = 4;
+    for (let i = 0; i < days; i++) {
+      gildedRose.updateQuality();
+    }
+
+    // Assert the updated item properties
+    expect(items[0].quality).toEqual(24); // Quality increases by 1 for 4 days
+    expect(items[0].sellIn).toEqual(11); // SellIn decreases by 4
+
+    expect(items[1].quality).toEqual(50); // Quality increases by 2 for 4 days but maxes out at 50
+    expect(items[1].sellIn).toEqual(6); // SellIn decreases by 4
+
+    expect(items[2].quality).toEqual(50); // Quality increases by 3 for 4 days but maxes out at 50
+    expect(items[2].sellIn).toEqual(1); // SellIn decreases by 4
+  });
 });
