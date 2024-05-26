@@ -1,10 +1,32 @@
-var {Shop, Item} = require('../src/gilded_rose.js');
-describe("Gilded Rose", function() {
+var { Shop, Item } = require("../src/gilded_rose.js");
+describe("Gilded Rose", function () {
+  it("Quality never negativ", function () {
+    const items = [
+      new Item("+5 Dexterity Vest", 10, 20),
+      new Item("Aged Brie", 2, 0),
+      new Item("Elixir of the Mongoose", 5, 7),
+      new Item("Sulfuras, Hand of Ragnaros", 0, 80),
+      new Item("Sulfuras, Hand of Ragnaros", -1, 80),
+      new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
+      new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
+      new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
 
-  it("should foo", function() {
-    const gildedRose = new Shop([ new Item("foo", 0, 0) ]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].name).toEqual("fixme");
+      // This Conjured item does not work properly yet
+      new Item("Conjured Mana Cake", 3, 6),
+    ];
+
+    const gildedRose = new Shop(items);
+
+    // Simulate passing 30 days
+    days = 30;
+    for (let i = 0; i < days; i++) {
+      gildedRose.updateQuality();
+    }
+
+    // Assert the updated item properties
+    expect(items[0].quality).toEqual(0);
+    items.forEach((item) => {
+      expect(item.quality).toBeGreaterThanOrEqual(0);
+    });
   });
-
 });
