@@ -54,10 +54,12 @@ describe("Gilded Rose", function () {
 
     // Assert the updated item properties
     items.forEach((item) => {
+      console.log(`Item: ${item.name}, Quality: ${item.quality}`);
       if (item.name == "Sulfuras, Hand of Ragnaros") {
         expect(item.quality).toBe(80);
+      } else {
+        expect(item.quality).toBeLessThanOrEqual(50);
       }
-      expect(item.quality).toBeLessThanOrEqual(50);
     });
   });
 });
