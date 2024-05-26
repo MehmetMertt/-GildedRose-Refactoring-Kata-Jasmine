@@ -3,3 +3,4 @@ Quality nie über 50 -> DONE
 Aged Brie nach 10 Tagen auf Quality 18 -> DONE
 Sulfuras never decreases in QUality or in SellIn -> DONE
 Backstage passes: increases by 2 when 10 days or less and by 3 when 5 days or less and drops to 0 after the concert -> DONE
+Quality of Backstage Pass with 10 SellIn and 49 Quality should equal to 1 SellIn and Quality 50 in 9 days -> DOING

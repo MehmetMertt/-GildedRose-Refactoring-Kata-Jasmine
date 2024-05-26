@@ -100,7 +100,7 @@ describe("Gilded Rose", function () {
     expect(items[1].sellIn).toEqual(-1);
   });
 
-  it("Quality of Backstage Pass with 15 SellIn and 20 Quality should equal to 5 SellIn and Quality 35", function () {
+  it("Quality of Backstage Pass with 15 SellIn and 20 Quality should equal to 5 SellIn and Quality 35 in 10 days", function () {
     const items = [
       new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
       // new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
@@ -118,5 +118,25 @@ describe("Gilded Rose", function () {
     // Assert the updated item properties
     expect(items[0].quality).toEqual(35);
     expect(items[0].sellIn).toEqual(5);
+  });
+
+  it("Quality of Backstage Pass with 10 SellIn and 49 Quality should equal to 1 SellIn and Quality 50 in 9 days", function () {
+    const items = [
+      //new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
+      new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
+      //new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
+    ];
+
+    const gildedRose = new Shop(items);
+
+    // Simulate passing 10 days
+    days = 9;
+    for (let i = 0; i < days; i++) {
+      gildedRose.updateQuality();
+    }
+
+    // Assert the updated item properties
+    expect(items[0].quality).toEqual(50);
+    expect(items[0].sellIn).toEqual(1);
   });
 });
