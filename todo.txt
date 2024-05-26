@@ -7,3 +7,4 @@ Quality of Backstage Pass with 10 SellIn and 49 Quality should equal to 1 SellIn
 Quality of Backstage Passes should be 0 after the converts -> DONE
 Quality of Backstage Passes after 3 days -> done
 General Check of Quality and SellIn decrease after some days -> done
+Testing of Backstage Pass with sellin of 5 -> done

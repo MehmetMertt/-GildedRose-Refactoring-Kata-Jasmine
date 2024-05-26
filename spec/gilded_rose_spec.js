@@ -193,4 +193,22 @@ describe("Gilded Rose", function () {
     expect(items[0].quality).toEqual(0);
     expect(items[0].sellIn).toBeLessThanOrEqual(0);
   });
+
+  it("Quality of Backstage Pass with 5 SellIn and 49 Quality should equal to 0 SellIn and Quality 0 in 6 days", function () {
+    const items = [
+      new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
+    ];
+
+    const gildedRose = new Shop(items);
+
+    // Simulate passing 5 days
+    days = 6;
+    for (let i = 0; i < days; i++) {
+      gildedRose.updateQuality();
+    }
+
+    // Assert the updated item properties
+    expect(items[0].quality).toEqual(0);
+    expect(items[0].sellIn).toBeLessThanOrEqual(0);
+  });
 });
