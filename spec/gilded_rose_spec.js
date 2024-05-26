@@ -211,4 +211,19 @@ describe("Gilded Rose", function () {
     expect(items[0].quality).toEqual(0);
     expect(items[0].sellIn).toBeLessThanOrEqual(0);
   });
+  it("Check for decrease of sellin of sulfuras when sellIn is positve", function () {
+    const items = [new Item("Sulfuras, Hand of Ragnaros", 4, 80)];
+
+    const gildedRose = new Shop(items);
+
+    // Simulate passing 5 days
+    days = 6;
+    for (let i = 0; i < days; i++) {
+      gildedRose.updateQuality();
+    }
+
+    // Assert the updated item properties
+    expect(items[0].quality).toEqual(80);
+    expect(items[0].sellIn).toEqual(4);
+  });
 });
