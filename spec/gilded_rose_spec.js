@@ -76,7 +76,28 @@ describe("Gilded Rose", function () {
 
     // Assert the updated item properties
     items.forEach((item) => {
-      expect(item.quality).toEqual(10);
+      expect(item.quality).toEqual(18);
     });
+  });
+
+  it("Sulfuras never decreases in Quality and SellIn", function () {
+    const items = [
+      new Item("Sulfuras, Hand of Ragnaros", 0, 80),
+      new Item("Sulfuras, Hand of Ragnaros", -1, 80),
+    ];
+
+    const gildedRose = new Shop(items);
+
+    // Simulate passing 10 days
+    days = 10;
+    for (let i = 0; i < days; i++) {
+      gildedRose.updateQuality();
+    }
+
+    // Assert the updated item properties
+    expect(items[0].quality).toEqual(80);
+    expect(items[0].sellIn).toEqual(0);
+    expect(items[1].quality).toEqual(80);
+    expect(items[1].sellIn).toEqual(-1);
   });
 });
