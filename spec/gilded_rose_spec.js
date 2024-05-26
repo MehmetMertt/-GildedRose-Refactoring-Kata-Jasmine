@@ -54,7 +54,6 @@ describe("Gilded Rose", function () {
 
     // Assert the updated item properties
     items.forEach((item) => {
-      console.log(`Item: ${item.name}, Quality: ${item.quality}`);
       if (item.name == "Sulfuras, Hand of Ragnaros") {
         expect(item.quality).toBe(80);
       } else {
@@ -99,5 +98,25 @@ describe("Gilded Rose", function () {
     expect(items[0].sellIn).toEqual(0);
     expect(items[1].quality).toEqual(80);
     expect(items[1].sellIn).toEqual(-1);
+  });
+
+  it("Quality of Backstage Pass with 15 SellIn and 20 Quality should equal to 5 SellIn and Quality 35", function () {
+    const items = [
+      new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
+      // new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
+      //new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
+    ];
+
+    const gildedRose = new Shop(items);
+
+    // Simulate passing 10 days
+    days = 10;
+    for (let i = 0; i < days; i++) {
+      gildedRose.updateQuality();
+    }
+
+    // Assert the updated item properties
+    expect(items[0].quality).toEqual(35);
+    expect(items[0].sellIn).toEqual(5);
   });
 });
