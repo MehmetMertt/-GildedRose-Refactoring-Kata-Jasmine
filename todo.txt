@@ -1,2 +1,3 @@
 QUALTIY nie unter 0 -> DONE
-Quality nie über 50 -> DOING
+Quality nie über 50 -> DONE
+Aged Brie nach 10 Tagen auf Quality 18 -> DONE

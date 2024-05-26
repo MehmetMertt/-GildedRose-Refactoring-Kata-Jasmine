@@ -62,4 +62,21 @@ describe("Gilded Rose", function () {
       }
     });
   });
+
+  it("Quality of Aged Brie should equal to 10 after 10 days", function () {
+    const items = [new Item("Aged Brie", 2, 0)];
+
+    const gildedRose = new Shop(items);
+
+    // Simulate passing 30 days
+    days = 10;
+    for (let i = 0; i < days; i++) {
+      gildedRose.updateQuality();
+    }
+
+    // Assert the updated item properties
+    items.forEach((item) => {
+      expect(item.quality).toEqual(10);
+    });
+  });
 });
