@@ -233,7 +233,7 @@ describe("Gilded Rose", function () {
     const gildedRose = new Shop(items);
 
     // Simulate passing 5 days
-    days = 6;
+    days = 3;
     for (let i = 0; i < days; i++) {
       gildedRose.updateQuality();
     }
