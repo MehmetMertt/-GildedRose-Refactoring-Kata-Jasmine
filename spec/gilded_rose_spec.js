@@ -226,4 +226,52 @@ describe("Gilded Rose", function () {
     expect(items[0].quality).toEqual(80);
     expect(items[0].sellIn).toEqual(4);
   });
+
+  it("Conjured Item Quality decrease by 6 in 3 days", function () {
+    const items = [new Item("Conjured Mana Cake", 6, 10)];
+
+    const gildedRose = new Shop(items);
+
+    // Simulate passing 5 days
+    days = 6;
+    for (let i = 0; i < days; i++) {
+      gildedRose.updateQuality();
+    }
+
+    // Assert the updated item properties
+    expect(items[0].quality).toEqual(4);
+    expect(items[0].sellIn).toEqual(3);
+  });
+
+  it("Conjured Item never negativ", function () {
+    const items = [new Item("Conjured Mana Cake", 6, 10)];
+
+    const gildedRose = new Shop(items);
+
+    // Simulate passing 10 days
+    days = 6;
+    for (let i = 0; i < days; i++) {
+      gildedRose.updateQuality();
+    }
+
+    // Assert the updated item properties
+    expect(items[0].quality).toEqual(0);
+    expect(items[0].sellIn).toBeLessThanOrEqual(0);
+  });
+
+  it("Conjured Item quality decrease 4x after sellin < 0 in 5 days by 12 points", function () {
+    const items = [new Item("Conjured Mana Cake", 3, 40)];
+
+    const gildedRose = new Shop(items);
+
+    // Simulate passing 5 days
+    days = 5;
+    for (let i = 0; i < days; i++) {
+      gildedRose.updateQuality();
+    }
+
+    // Assert the updated item properties
+    expect(items[0].quality).toEqual(26);
+    expect(items[0].sellIn).toBeLessThanOrEqual(0);
+  });
 });
