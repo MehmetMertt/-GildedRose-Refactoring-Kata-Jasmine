@@ -80,10 +80,7 @@ describe("Gilded Rose", function () {
   });
 
   it("Sulfuras never decreases in Quality and SellIn", function () {
-    const items = [
-      new Item("Sulfuras, Hand of Ragnaros", 0, 80),
-      new Item("Sulfuras, Hand of Ragnaros", -1, 80),
-    ];
+    const items = [new Item("Sulfuras, Hand of Ragnaros", 0, 80), new Item("Sulfuras, Hand of Ragnaros", -1, 80)];
 
     const gildedRose = new Shop(items);
 
@@ -141,11 +138,7 @@ describe("Gilded Rose", function () {
   });
 
   it("Quality check of passes after 4 days", function () {
-    const items = [
-      new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
-      new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
-      new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
-    ];
+    const items = [new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20), new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49), new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49)];
 
     const gildedRose = new Shop(items);
 
@@ -195,9 +188,7 @@ describe("Gilded Rose", function () {
   });
 
   it("Quality of Backstage Pass with 5 SellIn and 49 Quality should equal to 0 SellIn and Quality 0 in 6 days", function () {
-    const items = [
-      new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
-    ];
+    const items = [new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49)];
 
     const gildedRose = new Shop(items);
 

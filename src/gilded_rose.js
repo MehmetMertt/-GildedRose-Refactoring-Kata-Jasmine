@@ -10,74 +10,71 @@ class Shop {
   constructor(items = []) {
     this.items = items;
   }
+
+  /*
+  Refeactoring Process:
+  1. Updated decreasing quality of items and sellin using compound assignment operator and & increment/decrement operator
+  2. Fixed nested ifs
+  3. Ifs -> Switch Case (personal prefference)
+  4. For-Loop -> foreach for better readability
+  5. Used Constants
+  6. (increasing/decreasing/set function for quality) -> goblin does not allow it:/
+  */
   updateQuality() {
-    for (var i = 0; i < this.items.length; i++) {
-      if (
-        this.items[i].name != "Aged Brie" &&
-        this.items[i].name != "Backstage passes to a TAFKAL80ETC concert"
-      ) {
-        if (this.items[i].quality > 0) {
-          if (
-            this.items[i].name != "Sulfuras, Hand of Ragnaros" &&
-            this.items[i].name != "Conjured Mana Cake"
-          ) {
-            this.items[i].quality = this.items[i].quality - 1;
-          } else {
-            if (this.items[i].name == "Conjured Mana Cake") {
-              this.items[i].quality = this.items[i].quality - 2;
-            }
-          }
-        }
-      } else {
-        if (this.items[i].quality < 50) {
-          this.items[i].quality = this.items[i].quality + 1;
-          if (
-            this.items[i].name == "Backstage passes to a TAFKAL80ETC concert"
-          ) {
-            if (this.items[i].sellIn < 11) {
-              if (this.items[i].quality < 50) {
-                this.items[i].quality = this.items[i].quality + 1;
-              }
-            }
-            if (this.items[i].sellIn < 6) {
-              if (this.items[i].quality < 50) {
-                this.items[i].quality = this.items[i].quality + 1;
-              }
-            }
-          }
-        }
+    const maxQuality = 50;
+    const minQuality = 0;
+
+    this.items.forEach((item) => {
+      if (item.name == "Sulfuras, Hand of Ragnaros") {
+        return;
       }
-      if (this.items[i].name != "Sulfuras, Hand of Ragnaros") {
-        this.items[i].sellIn = this.items[i].sellIn - 1;
-      }
-      if (this.items[i].sellIn < 0) {
-        if (this.items[i].name != "Aged Brie") {
-          if (
-            this.items[i].name != "Backstage passes to a TAFKAL80ETC concert"
-          ) {
-            if (this.items[i].quality > 0) {
-              if (
-                this.items[i].name != "Sulfuras, Hand of Ragnaros" &&
-                this.items[i].name != "Conjured Mana Cake"
-              ) {
-                this.items[i].quality = this.items[i].quality - 1;
-              } else {
-                if (this.items[i].name == "Conjured Mana Cake") {
-                  this.items[i].quality = this.items[i].quality - 2;
-                }
-              }
+
+      switch (item.name) {
+        case "Aged Brie":
+          if (item.quality < maxQuality) {
+            item.quality++;
+          }
+          if (item.sellIn <= 0 && item.quality < maxQuality) {
+            item.quality++;
+          }
+          break;
+
+        case "Backstage passes to a TAFKAL80ETC concert":
+          if (item.quality < maxQuality) {
+            item.quality++;
+
+            if (item.sellIn < 11 && item.quality < maxQuality) {
+              item.quality++;
             }
-          } else {
-            this.items[i].quality =
-              this.items[i].quality - this.items[i].quality;
+
+            if (item.sellIn < 6 && item.quality < maxQuality) {
+              item.quality++;
+            }
           }
-        } else {
-          if (this.items[i].quality < 50) {
-            this.items[i].quality = this.items[i].quality + 1;
+
+          if (item.sellIn <= 0) {
+            item.quality = 0;
           }
-        }
+          break;
+
+        case "Conjured Mana Cake":
+          if (item.quality > minQuality) {
+            item.quality -= 2;
+          }
+          if (item.quality > minQuality && item.sellIn <= 0) {
+            item.quality -= 2;
+          }
+          break;
+
+        default:
+          if (item.quality > minQuality) {
+            item.quality--;
+          }
+          break;
       }
-    }
+
+      item.sellIn--;
+    });
 
     return this.items;
   }
