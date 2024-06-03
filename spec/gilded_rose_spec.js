@@ -18,7 +18,7 @@ describe("Gilded Rose", function () {
     const gildedRose = new Shop(items);
 
     // Simulate passing 30 days
-    days = 30;
+    let days = 30;
     for (let i = 0; i < days; i++) {
       gildedRose.updateQuality();
     }
@@ -47,14 +47,14 @@ describe("Gilded Rose", function () {
     const gildedRose = new Shop(items);
 
     // Simulate passing 30 days
-    days = 30;
+    let days = 30;
     for (let i = 0; i < days; i++) {
       gildedRose.updateQuality();
     }
 
     // Assert the updated item properties
     items.forEach((item) => {
-      if (item.name == "Sulfuras, Hand of Ragnaros") {
+      if (item.name === "Sulfuras, Hand of Ragnaros") {
         expect(item.quality).toBe(80);
       } else {
         expect(item.quality).toBeLessThanOrEqual(50);
@@ -68,7 +68,7 @@ describe("Gilded Rose", function () {
     const gildedRose = new Shop(items);
 
     // Simulate passing 30 days
-    days = 10;
+    let days = 10;
     for (let i = 0; i < days; i++) {
       gildedRose.updateQuality();
     }
@@ -85,7 +85,7 @@ describe("Gilded Rose", function () {
     const gildedRose = new Shop(items);
 
     // Simulate passing 10 days
-    days = 10;
+    let days = 10;
     for (let i = 0; i < days; i++) {
       gildedRose.updateQuality();
     }
@@ -107,7 +107,7 @@ describe("Gilded Rose", function () {
     const gildedRose = new Shop(items);
 
     // Simulate passing 10 days
-    days = 10;
+    let days = 10;
     for (let i = 0; i < days; i++) {
       gildedRose.updateQuality();
     }
@@ -127,7 +127,7 @@ describe("Gilded Rose", function () {
     const gildedRose = new Shop(items);
 
     // Simulate passing 10 days
-    days = 9;
+    let days = 9;
     for (let i = 0; i < days; i++) {
       gildedRose.updateQuality();
     }
@@ -143,7 +143,7 @@ describe("Gilded Rose", function () {
     const gildedRose = new Shop(items);
 
     // Simulate passing 4 days
-    days = 4;
+    let days = 4;
     for (let i = 0; i < days; i++) {
       gildedRose.updateQuality();
     }
@@ -164,7 +164,7 @@ describe("Gilded Rose", function () {
 
     const gildedRose = new Shop(items);
 
-    days = 3;
+    let days = 3;
     for (let i = 0; i < days; i++) {
       gildedRose.updateQuality();
     }
@@ -178,7 +178,7 @@ describe("Gilded Rose", function () {
 
     const gildedRose = new Shop(items);
 
-    days = 10;
+    let days = 10;
     for (let i = 0; i < days; i++) {
       gildedRose.updateQuality();
     }
@@ -193,7 +193,7 @@ describe("Gilded Rose", function () {
     const gildedRose = new Shop(items);
 
     // Simulate passing 5 days
-    days = 6;
+    let days = 6;
     for (let i = 0; i < days; i++) {
       gildedRose.updateQuality();
     }
@@ -208,7 +208,7 @@ describe("Gilded Rose", function () {
     const gildedRose = new Shop(items);
 
     // Simulate passing 5 days
-    days = 6;
+    let days = 6;
     for (let i = 0; i < days; i++) {
       gildedRose.updateQuality();
     }
@@ -224,7 +224,7 @@ describe("Gilded Rose", function () {
     const gildedRose = new Shop(items);
 
     // Simulate passing 5 days
-    days = 3;
+    let days = 3;
     for (let i = 0; i < days; i++) {
       gildedRose.updateQuality();
     }
@@ -240,7 +240,7 @@ describe("Gilded Rose", function () {
     const gildedRose = new Shop(items);
 
     // Simulate passing 10 days
-    days = 6;
+    let days = 6;
     for (let i = 0; i < days; i++) {
       gildedRose.updateQuality();
     }
@@ -256,7 +256,7 @@ describe("Gilded Rose", function () {
     const gildedRose = new Shop(items);
 
     // Simulate passing 5 days
-    days = 5;
+    let days = 5;
     for (let i = 0; i < days; i++) {
       gildedRose.updateQuality();
     }

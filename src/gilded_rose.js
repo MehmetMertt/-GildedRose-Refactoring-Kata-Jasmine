@@ -25,7 +25,7 @@ class Shop {
     const minQuality = 0;
 
     this.items.forEach((item) => {
-      if (item.name == "Sulfuras, Hand of Ragnaros") {
+      if (item.name === "Sulfuras, Hand of Ragnaros") {
         return;
       }
 
